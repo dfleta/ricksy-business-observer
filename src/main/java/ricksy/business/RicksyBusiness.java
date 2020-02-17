@@ -3,12 +3,12 @@
  */
 package ricksy.business;
 
-public class App {
+public class RicksyBusiness {
     public String getGreeting() {
         return "Hello world.";
     }
 
     public static void main(String[] args) {
-        System.out.println(new App().getGreeting());
+        System.out.println(new RicksyBusiness().getGreeting());
     }
 }
