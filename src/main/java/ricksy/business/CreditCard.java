@@ -12,6 +12,23 @@ public class CreditCard {
         this.number = number;
     }
 
+    public boolean pay(double charge) {
+        if (charge <= this.credit) {
+            this.credit -= charge;
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public String number() {
+        return this.number;
+    }
+
+    public double credit() {
+        return this.credit;
+    }
+
     @Override
     public String toString() {
         return "owner: " + this.owner 

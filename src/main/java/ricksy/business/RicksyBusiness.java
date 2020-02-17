@@ -30,30 +30,47 @@ public class RicksyBusiness {
         System.out.println();
 
         /**
-         * Crea la clase tarjeta de crédito
-         * de los invitados.
+         * Crea una tarjeta de crédito para Abradolf.
          * Como es una AndromedanExpress
          * el crédito inicial es de 3000 EZIS
          */
 
         CreditCard card = new CreditCard("Abradolf Lincler", "4916119711304546");
         
-        System.out.println("\n" + "Tarjeta de Abradol" + "\n" + 
-                                  "=================="        );
+        System.out.println("\n" + "Tarjeta de Abradolf" + "\n" + 
+                                  "==================="        );
         System.out.println(card);
 
         /**
          * Primero hay que construir el componente de reserva de Ovnis
-         * Recibe el objeto tarjeta de crédito del invitado/a Abradolf
+         * Recibe el objeto tarjeta de crédito del invitado/a
          * en el método dispatch(card)
          * y realiza un cargo a la tarjeta.
          * Si hay saldo suficiente se reserva un UberOvni
-         * para ese invitado/a.
+         * libre en el sistema para ese invitado/a.
+         * El coste del ovni es de 500 EZIs.
          */
 
+        UberOvnis uberOvnis = new UberOvnis();
+
+        // Disponemos sólo de 3 ovnis que hay que dar de alta en el sistema.
+        String[] ovnis = { "unx", "dox", "trex" };
+		for (String ovni : ovnis) {
+			uberOvnis.add(ovni);
+        }
         
-        
-        
+        // Procesamos el pago de Abradolf
+        uberOvnis.dispatch(card);
+
+        // Mostramos el iD del ovni de Abradolf
+        System.out.println("\n" + "Ovni de Abradolf" + "\n" + 
+                                  "================"        );
+        System.out.println(uberOvnis.getOvniOf(card.number()));
+       
+        // Mostramos el credito de Abradolf
+        System.out.println("\n" + "Credito de Abradolf" + "\n" + 
+                                  "==================="        );
+        System.out.println(card.credit());
 
         /**
          * Crea el receptivo de invitados de nuestro sistema.
