@@ -12,7 +12,7 @@
  * se le da de alta en el receptivo del sistema
  * mediante su tarjeta de crédito.
  * El receptivo carga en el crédito de la tarjeta:
- * - el coste del Ovni de vuelta a casa
+ * - el coste del UberOvni de vuelta a casa
  * - el coste de los productos del pack de bienvenida.
  * 
  * El componente de reserva de Ovnis y el componente
@@ -44,14 +44,16 @@ public class RicksyBusiness {
 
         /**
          * Primero hay que construir el componente de reserva de Ovnis
-         * Recibe un objeto tarjeta de crédito en su método
-         * dispatch(card)
-         * y realiza el cargo a la tarjeta
+         * Recibe el objeto tarjeta de crédito del invitado/a Abradolf
+         * en el método dispatch(card)
+         * y realiza un cargo a la tarjeta.
+         * Si hay saldo suficiente se reserva un UberOvni
+         * para ese invitado/a.
          */
 
-
-
-
+        
+        
+        
 
         /**
          * Crea el receptivo de invitados de nuestro sistema.
