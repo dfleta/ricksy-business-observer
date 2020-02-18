@@ -5,6 +5,7 @@ import static org.junit.Assert.*;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.junit.Before;
 
@@ -33,6 +34,35 @@ public class UfosParkTest {
         CreditCard card = new CreditCard("Abradolf Lincler", "4916119711304546");
         ufos.dispatch(card);
         assertTrue(ufos.containsCard(card.number()));
+        List<String> cards = ufos.cardNumbers()
+                                    .stream()
+                                    .filter(n -> n == card.number())
+                                    .collect(Collectors.toList());
+
+        assertEquals(1, cards.size(), 0);
+
+    }
+
+    @Test
+    public void dispatchNoCreditTest() {
+        CreditCard card = new CreditCard("Abradolf Lincler", "4916119711304546");
+        card.pay(3000);
+        assertEquals(0, card.credit(), 0);
+        ufos.dispatch(card);
+        assertFalse(ufos.containsCard(card.number()));
+    }
+
+    @Test
+    public void dispatchUfoAlreadyReservedTest() {
+        CreditCard card = new CreditCard("Abradolf Lincler", "4916119711304546");
+        ufos.dispatch(card);
+        ufos.dispatch(card);
+        List<String> cards = ufos.cardNumbers()
+                                    .stream()
+                                    .filter(n -> n == card.number())
+                                    .collect(Collectors.toList());
+
+        assertEquals(1, cards.size(), 0);
     }
 
     @Test

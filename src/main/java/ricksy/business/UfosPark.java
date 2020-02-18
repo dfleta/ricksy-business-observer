@@ -1,6 +1,7 @@
 package ricksy.business;
 
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -18,10 +19,11 @@ public class UfosPark implements GuestDispatcher {
 
     @Override
     public void dispatch(CreditCard card) {
-        if (card.pay(fee)) {
+        if (card.pay(fee) & !flota.containsValue(card.number())) {
             for (Map.Entry<String, String> entry : this.flota.entrySet()) {
                 if (entry.getValue() == null) {
                     this.flota.put(entry.getKey(), card.number());
+                    break;
                 }
             }
         }
@@ -54,4 +56,8 @@ public class UfosPark implements GuestDispatcher {
     public boolean containsCard(String cardNumber) {
         return this.flota.containsValue(cardNumber);
     }
-}
+
+    public Collection<String> cardNumbers() {
+        return this.flota.values();
+    }
+} 
