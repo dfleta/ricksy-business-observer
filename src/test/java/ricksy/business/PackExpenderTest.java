@@ -34,6 +34,7 @@ public class PackExpenderTest {
         expender = new PackExpender(0, 50.0);
         expender.dispatch(card);
         assertEquals(0, expender.stock());
+        assertEquals(3000, card.credit(), 0);
     }
 
     @Test

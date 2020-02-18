@@ -12,7 +12,7 @@ public class PackExpender implements GuestDispatcher {
 
     @Override
     public void dispatch(CreditCard card) {
-        if (card.pay(itemCost) & this.stock > 0) {
+        if (this.stock > 0 && card.pay(itemCost)) {
             this.stock -= 1;
         }
     }
@@ -22,10 +22,6 @@ public class PackExpender implements GuestDispatcher {
         return "stock: " + this.stock +
                 "\ncost: " + this.itemCost;
     }
-
-    /**
-     * Testing
-     */
 
     public int stock() {
         return this.stock;
