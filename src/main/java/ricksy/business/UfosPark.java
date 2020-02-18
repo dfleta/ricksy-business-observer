@@ -1,20 +1,23 @@
 package ricksy.business;
 
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
-public class UberOvnis {
+public class UfosPark implements GuestDispatcher {
 
     private double fee = 500d;
 
-    Map<String, String> flota = new HashMap<String, String>();
+    private Map<String, String> flota = new HashMap<String, String>();
     
-    public UberOvnis() {};
+    public UfosPark() {};
 
     public void add(String ovniID) {
         flota.putIfAbsent(ovniID, null);
     }
 
+    @Override
     public void dispatch(CreditCard card) {
         if (card.pay(fee)) {
             for (Map.Entry<String, String> entry : this.flota.entrySet()) {
@@ -36,5 +39,12 @@ public class UberOvnis {
             }
         }
         return ovniID;
+    }
+
+    @Override
+    public String toString() {
+        String[] ufosID = this.flota.keySet().toArray(new String[flota.size()]);
+        Arrays.sort(ufosID);
+        return List.of(ufosID).toString();
     }
 }
