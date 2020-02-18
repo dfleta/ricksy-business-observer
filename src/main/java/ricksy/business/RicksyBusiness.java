@@ -42,7 +42,7 @@ public class RicksyBusiness {
         System.out.println(card);
 
         /**
-         * Primero hay que construir el componente de reserva de Ovnis
+         * Construye el componente de reserva de Ovnis
          * Recibe el objeto tarjeta de crédito del invitado/a
          * en el método dispatch(card)
          * y realiza un cargo a la tarjeta.
@@ -51,37 +51,65 @@ public class RicksyBusiness {
          * El coste del ovni es de 500 EZIs.
          */
 
-        UberOvnis uberOvnis = new UberOvnis();
+        UfosPark ufosPark = new UfosPark();
 
         // Disponemos sólo de 3 ovnis que hay que dar de alta en el sistema.
-        String[] ovnis = { "unx", "dox", "trex" };
-		for (String ovni : ovnis) {
-			uberOvnis.add(ovni);
+        String[] ufosID = { "unx", "dox", "trex" };
+		for (String ovni : ufosID) {
+			ufosPark.add(ovni);
         }
         
-        // Procesamos el pago de Abradolf
-        uberOvnis.dispatch(card);
+        // Procesamos el pago y reserva de ovni de Abradolf
+        ufosPark.dispatch(card);
 
         // Mostramos el iD del ovni de Abradolf
         System.out.println("\n" + "Ovni de Abradolf" + "\n" + 
                                   "================"        );
-        System.out.println(uberOvnis.getOvniOf(card.number()));
+        System.out.println(ufosPark.getUfoOf(card.number()));
        
         // Mostramos el credito de Abradolf
-        System.out.println("\n" + "Credito de Abradolf" + "\n" + 
-                                  "==================="        );
-        System.out.println(card.credit());
+        System.out.println("Credito de Abradolf: " + card.credit());
+
+        /**
+         * Construye el dispensador del pack de bienvenida.
+         * Hay 100 packs.
+         * El coste de cada uno de ellos es de 50 EZIs
+         */
+
+        PackExpender packExpender = new PackExpender(100, 50);
+
+        // muestra el total de packs y su precio unidad
+        System.out.println("\n" + "Packs" + "\n" + 
+                                  "====="        );
+        System.out.println(packExpender);
+
+        // Abradolf compre su pack de bienvenida
+        packExpender.dispatch(card);
+
+        System.out.println("\n" + "Abradolf compra su pack" + "\n" + 
+                                  "======================="        );
+        System.out.println("Packs\n" + packExpender);
+        System.out.println("Credito de Abradolf: " + card.credit());
 
         /**
          * Crea el receptivo de invitados de nuestro sistema.
-         * Da de alta a un invitado mediante su tarjeta de crédito.
+         * Da de alta a un invitado mediante su tarjeta de crédito
+         * y procesa el pago del Ovni y el pack correspondientes
+         * a ese invitado.
+         * 
+         * Para ello, crea el componente receptivo
+         * y registra (añade) los componentes UberOvnis
+         * y PacksDispatcher
          */
 
+        Receptivo receptivo = new Receptivo();
+        receptivo.registra(packExpender);
+        receptivo.registra(ufosPark);
+        receptivo.dispatch(card);
 
-
-
-
-
-
+        System.out.println("\n" + "Packs" + "\n" + 
+                                  "====="        );
+        System.out.println(packExpender);
+        System.out.println("Credito de Abradolf: " + card.credit());
     }
 }

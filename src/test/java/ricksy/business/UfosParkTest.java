@@ -11,7 +11,7 @@ import org.junit.Before;
 
 public class UfosParkTest {
 
-    private UfosPark ufos = null;
+    UfosPark ufos = null;
     String[] ovnis = { "unx", "dox", "trex" };
 
     @Before
