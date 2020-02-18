@@ -13,8 +13,8 @@ public class UfosPark implements GuestDispatcher {
     
     public UfosPark() {};
 
-    public void add(String ovniID) {
-        flota.putIfAbsent(ovniID, null);
+    public void add(String ufoID) {
+        flota.putIfAbsent(ufoID, null);
     }
 
     @Override
