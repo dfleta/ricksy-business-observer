@@ -11,22 +11,34 @@ import org.junit.Before;
 public class UfosParkTest {
 
     private UfosPark ufos = null;
+    String[] ovnis = { "unx", "dox", "trex" };
 
     @Before
-    public void constructorTest() {
+    public void setupUfosPark() {
         ufos = new UfosPark();
         assertNotNull("Parque de UFOS creados", ufos);
+        for (String ovni : ovnis) {
+			ufos.add(ovni);
+        }
     }
 
     @Test
     public void addUFOtest() {
-
-        String[] ovnis = { "unx", "dox", "trex" };
-		for (String ovni : ovnis) {
-			ufos.add(ovni);
-        }
         Arrays.sort(ovnis);
         assertEquals(List.of(ovnis).toString(), ufos.toString());
     }
 
+    @Test
+    public void dispatchTest() {
+        CreditCard card = new CreditCard("Abradolf Lincler", "4916119711304546");
+        ufos.dispatch(card);
+        assertTrue(ufos.containsCard(card.number()));
+    }
+
+    @Test
+    public void getUfoOfTest() {
+        CreditCard card = new CreditCard("Abradolf Lincler", "4916119711304546");
+        ufos.dispatch(card);
+        assertTrue(ufos.toString().contains(ufos.getUfoOf(card.number())));
+    }
 }

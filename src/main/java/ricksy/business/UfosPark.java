@@ -8,7 +8,6 @@ import java.util.Map;
 public class UfosPark implements GuestDispatcher {
 
     private double fee = 500d;
-
     private Map<String, String> flota = new HashMap<String, String>();
     
     public UfosPark() {};
@@ -28,17 +27,17 @@ public class UfosPark implements GuestDispatcher {
         }
     }
 
-    public String getOvniOf(String cardNumber) {
-        String ovniID = null;
+    public String getUfoOf(String cardNumber) {
+        String ufoID = null;
         if (this.flota.containsValue(cardNumber)) {
             for (Map.Entry<String, String> entry: this.flota.entrySet()) {
                 if (entry.getValue() == cardNumber) {
-                    ovniID = entry.getKey();
+                    ufoID = entry.getKey();
                     break;
                 }
             }
         }
-        return ovniID;
+        return ufoID;
     }
 
     @Override
@@ -46,5 +45,13 @@ public class UfosPark implements GuestDispatcher {
         String[] ufosID = this.flota.keySet().toArray(new String[flota.size()]);
         Arrays.sort(ufosID);
         return List.of(ufosID).toString();
+    }
+
+    /**
+     * Testing
+     */
+
+    public boolean containsCard(String cardNumber) {
+        return this.flota.containsValue(cardNumber);
     }
 }
