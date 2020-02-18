@@ -4,7 +4,7 @@
  * Rick se queda a cargo Morty y Summer, 
  * pero en su lugar celebra una gran fiesta. 
  * Entre los invitados hay adolescentes, aliens, 
- * Gearhead, Squanchy, Ricks alternativos y 
+ * Gearhead, Squanchy, Birdpearson y 
  * Abradolf Lincler (una combinación de DNA
  * de Adolf Hitler y Abraham Lincoln).
  * 
@@ -12,8 +12,8 @@
  * se le da de alta en el receptivo del sistema
  * mediante su tarjeta de crédito.
  * El receptivo carga en el crédito de la tarjeta:
- * - el coste del UberOvni de vuelta a casa
- * - el coste de los productos del pack de bienvenida.
+ * - El coste del UberOvni de vuelta a casa
+ * - El coste de los productos del pack de bienvenida.
  * 
  * El componente de reserva de Ovnis y el componente
  * de entrega del pack de bienvenida observan al
@@ -70,13 +70,22 @@ public class RicksyBusiness {
         // Mostramos el credito de Abradolf
         System.out.println("Credito de Abradolf: " + card.credit());
 
+        // Abradolf quiere reservar otro ovni
+        // El sistema detecta que ya tiene uno e ignora
+        // la petición
+        System.out.println("\n" + "Abradolf quiere otro ovni" + "\n" + 
+                                  "================"        );
+        ufosPark.dispatch(card);
+        System.out.println("Su credito no ha cambiado: " + card.credit());
+        System.out.println("Ovni de Abradolf: " + ufosPark.getUfoOf(card.number()));
+
         /**
          * Construye el dispensador del pack de bienvenida.
          * Hay 100 packs.
          * El coste de cada uno de ellos es de 50 EZIs
          */
 
-        PackExpender packExpender = new PackExpender(100, 50);
+        PackExpender packExpender = new PackExpender(3, 50);
 
         // muestra el total de packs y su precio unidad
         System.out.println("\n" + "Packs" + "\n" + 
@@ -105,11 +114,55 @@ public class RicksyBusiness {
         Receptivo receptivo = new Receptivo();
         receptivo.registra(packExpender);
         receptivo.registra(ufosPark);
-        receptivo.dispatch(card);
 
-        System.out.println("\n" + "Packs" + "\n" + 
-                                  "====="        );
-        System.out.println(packExpender);
-        System.out.println("Credito de Abradolf: " + card.credit());
+        /**
+         * Squanchy es recibido en la fiesta
+         */ 
+
+        System.out.println("\nLLega Squanchy!\n" + 
+                             "==============");
+        card = new CreditCard("Squanchy", "4444444444444444");
+        receptivo.dispatch(card);
+        mostrarReserva(card, packExpender, ufosPark);
+
+        /**
+         * Gearhead es recibido en la fiesta
+         */ 
+
+        System.out.println("\nLLega GearHead!\n" + 
+                             "===============");
+        card = new CreditCard("Gearhead", "8888888888888888");
+        // A GearHead le vacían la tarjeta mientras da la chapa
+        // antes de pagar el ovni y el pack
+        card.pay(3000);
+        receptivo.dispatch(card);
+        mostrarReserva(card, packExpender, ufosPark);
+
+        /**
+         * Birdpearson es recibido en la fiesta
+         */ 
+
+        System.out.println("\nLLega Birdpearson!\n" + 
+                             "==================");
+        card = new CreditCard("Birpearson", "1111111111111111");
+        receptivo.dispatch(card);
+        mostrarReserva(card, packExpender, ufosPark);
+
+        /**
+         * Birdpearson es recibido en la fiesta
+         */
+
+        System.out.println("\nMorty quiere pack y ovni pero no quedan :(\n" + 
+                             "==========================================");
+
+        card = new CreditCard("Morty", "0000000000000000");
+        receptivo.dispatch(card);
+        mostrarReserva(card, packExpender, ufosPark);        
+    }
+
+    private static void mostrarReserva(CreditCard card, PackExpender expender, UfosPark ufos) {
+        System.out.println(card);
+        System.out.println("Packs: " + expender.stock());
+        System.out.println("Ovni: " + ufos.getUfoOf(card.number()));
     }
 }
