@@ -5,13 +5,13 @@ import static org.junit.Assert.*;
 
 import org.junit.Before;
 
-public class PackExpenderTest {
+public class CrystalExpenderTest {
 
-    private PackExpender expender = null;
+    private CrystalExpender expender = null;
 
     @Before
     public void setupExpender() {
-        expender = new PackExpender(100, 50.0);
+        expender = new CrystalExpender(100, 50.0);
         assertNotNull("Expender creado", expender);
     }
 
@@ -31,7 +31,7 @@ public class PackExpenderTest {
     @Test
     public void dispatchTestNoStock() {
         CreditCard card = new CreditCard("Abradolf Lincler", "4916119711304546");
-        expender = new PackExpender(0, 50.0);
+        expender = new CrystalExpender(0, 50.0);
         expender.dispatch(card);
         assertEquals(0, expender.stock());
         assertEquals(3000, card.credit(), 0);
@@ -40,7 +40,7 @@ public class PackExpenderTest {
     @Test
     public void dispatchTestNoCredit() {
         CreditCard card = new CreditCard("Abradolf Lincler", "4916119711304546");
-        expender = new PackExpender(100, 4000);
+        expender = new CrystalExpender(100, 4000);
         expender.dispatch(card);
         assertEquals(100, expender.stock());
     }

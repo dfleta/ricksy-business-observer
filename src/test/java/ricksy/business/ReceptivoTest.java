@@ -9,7 +9,7 @@ public class ReceptivoTest {
 
     private Receptivo receptivo = null;
     private UfosParkTest parkTest = null;
-    private PackExpender packExpender = null;
+    private CrystalExpender packExpender = null;
 
     @Before
     public void setupTest() {
@@ -17,7 +17,7 @@ public class ReceptivoTest {
         parkTest = new UfosParkTest();
         parkTest.setupUfosPark();
 
-        packExpender = new PackExpender(100, 50);
+        packExpender = new CrystalExpender(100, 50);
 
         receptivo = new Receptivo();
         receptivo.registra(parkTest.ufos);
