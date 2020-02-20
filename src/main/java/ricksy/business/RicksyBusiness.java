@@ -210,12 +210,38 @@ public class RicksyBusiness {
          * A por el 10!! 
          * Wubba lubba dub dub!!
          * 
-         * Añade otra tarea al receptivo, 
-         * de modo que cuando llega un invitado/a 
-         * 
+         * Añade otra tarea al receptivo,
+         * de modo que 5 invitados:
+         * abradolph, squanchy, morty, gearHead, birdpearson
+         * encarguen un RickMenú junto 
+         * al ovni y al pack de bienvenida.
+         * Hay 100 RickMenús y su precio es de 10 EZIs.
+         * Muestra el total de pedidos y la lista de
+         * invitados/as (numero de tarjeta) que han hecho un pedido.
          */
 
          // tu código aquí
+
+        RickMenuDispatcher MenuDispatcher = new RickMenuDispatcher();
+
+        receptivo.registra(MenuDispatcher);
+
+        CreditCard[] cards = {abradolph, squanchy, morty, gearHead, birdpearson};
+
+        for (CreditCard card: cards) {
+            receptivo.dispatch(card);
+        }
+
+        System.out.println("\nPedidos de RickMenus:\n" + 
+                             "=====================");
+        System.out.println(MenuDispatcher);
+
+        System.out.println("\nCreditos de los invitados/as:\n" + 
+                             "=============================");
+
+        for (CreditCard card: cards) {
+            System.out.println(card);
+        }
     }
 
     private static void mostrarReserva(CreditCard card, CrystalExpender expender, UfosPark ufos) {

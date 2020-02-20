@@ -25,7 +25,11 @@ public class CreditCard {
         return this.number;
     }
 
-    public double credit() {
+    String cardOwner() {
+        return this.owner;
+    }
+
+    double credit() {
         return this.credit;
     }
 
