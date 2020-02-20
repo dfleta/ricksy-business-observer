@@ -2,7 +2,7 @@
  * Ricksy Business
  * ===============
  * Rick se queda a cargo Morty y Summer, 
- * pero en su lugar celebra una gran fiesta. 
+ * y celebra una pedazo de fiesta. 
  * Entre los invitados hay adolescentes, aliens, 
  * Gearhead, Squanchy, Birdpearson y 
  * Abradolph Lincler (una combinación de DNA
@@ -11,9 +11,10 @@
  * Cuando un invitado/a llega a la fiesta, 
  * se le da de alta en el receptivo del sistema
  * mediante su tarjeta de crédito.
+ * 
  * El receptivo carga en el crédito de la tarjeta:
  * - El coste del UberOvni de vuelta a casa
- * - El coste de los productos del pack de bienvenida.
+ * - El coste del pack de bienvenida (Collaxion crystals).
  * 
  * El componente de reserva de Ovnis y el componente
  * de entrega del pack de bienvenida observan al
@@ -35,82 +36,88 @@ public class RicksyBusiness {
          * el crédito inicial es de 3000 EZIS
          */
 
-        CreditCard cardA = new CreditCard("Abradolph Lincler", "4916119711304546");
+        CreditCard abradolph = new CreditCard("Abradolph Lincler", "4916119711304546");
         
         System.out.println("\n" + "Tarjeta de Abradolph" + "\n" + 
-                                  "==================="        );
-        System.out.println(cardA);
+                                  "===================="        );
+        System.out.println(abradolph);
 
         /**
-         * Construye el componente de reserva de Ovnis
+         * Construye el componente de reserva de Ovnis.
          * Recibe el objeto tarjeta de crédito del invitado/a
          * en el método dispatch(card)
          * y realiza un cargo a la tarjeta.
          * Si hay saldo suficiente se reserva un UberOvni
-         * libre en el sistema para ese invitado/a.
+         * de los que estén libres.
          * El coste del ovni es de 500 EZIs.
          */
 
         UfosPark ufosPark = new UfosPark();
 
-        // Disponemos sólo de 3 ovnis que hay que dar de alta en el sistema.
+        // Da de alta en la flota de ovnis 2 UFOS.
+
         String[] ufosID = { "unx", "dox" };
 		for (String ovni : ufosID) {
 			ufosPark.add(ovni);
         }
         
         // Procesamos el pago y reserva de ovni de Abradolph
-        ufosPark.dispatch(cardA);
+        ufosPark.dispatch(abradolph);
 
-        // Mostramos el iD del ovni de Abradolph
-        System.out.println("\n" + "Ovni de Abradolph" + "\n" + 
-                                  "================"        );
-        System.out.println(ufosPark.getUfoOf(cardA.number()));
+        // Mostramos el ID del ovni asignado a Abradolph
+        System.out.println("\nOvni de Abradolph\n" + 
+                             "=================");
+        System.out.println(ufosPark.getUfoOf(abradolph.number()));
        
-        // Mostramos el credito de Abradolph
-        System.out.println("Credito de Abradolph: " + cardA.credit());
+        // Mostramos el credito de la tarjeta de Abradolph
+        System.out.println("Credito de Abradolph: " + abradolph.credit());
 
-        // Abradolph quiere reservar otro ovni
+        // Abradolph quiere reservar otro ovni.
         // El sistema detecta que ya tiene uno 
-        // e ignora la petición
+        // e ignora la petición.
 
-        System.out.println("\n" + "Abradolph quiere otro ovni" + "\n" + 
-                                  "========================="        );
-        ufosPark.dispatch(cardA);
-        System.out.println("Su credito no ha cambiado: " + cardA.credit());
-        System.out.println("Ovni de Abradolph: " + ufosPark.getUfoOf(cardA.number()));
+        System.out.println("\nAbradolph quiere otro ovni\n" + 
+                             "==========================");
+        ufosPark.dispatch(abradolph);
+        System.out.println("Su credito no ha cambiado: " + abradolph.credit());
+        System.out.println("Ovni de Abradolph: " + ufosPark.getUfoOf(abradolph.number()));
 
-        // A GearHead le vacían la tarjeta un alien cracker 
-        // mientras le da la chapa antes de pagar el ovni
+        // A GearHead le vacía la tarjeta el alien "Cámara Lenta" 
+        // mientras le daba la chapa, justo antes de pagar el ovni.
+        // Intenta reservarlo y el componente de reserva de ovnis
+        // no le asigna ninguno.
 
         System.out.println("\nLLega GearHead!\n" + 
                              "===============");
-        CreditCard cardG = new CreditCard("Gearhead", "8888888888888888");
+        CreditCard gearHead = new CreditCard("Gearhead", "8888888888888888");
 
-        cardG.pay(3000);
-        ufosPark.dispatch(cardG);
-        System.out.println("Su credito es cero: " + cardG.credit());
-        System.out.println("No puede reservar ovni: " + ufosPark.getUfoOf(cardG.number()));
+        gearHead.pay(3000); // le vacían la cartera
+
+        ufosPark.dispatch(gearHead);
+        System.out.println("Su credito es cero: " + gearHead.credit());
+        System.out.println("No puede reservar ovni: " + ufosPark.getUfoOf(gearHead.number()));
         
-        // Squanchy quiere su ovni
+        // Squanchy deja su ovni reservado
+        // antes de irse a squanchear
 
         System.out.println("\nLLega Squanchy!\n" + 
                              "==============");
-        CreditCard cardS = new CreditCard("Squanchy", "4444444444444444");
-        ufosPark.dispatch(cardS);
-        System.out.println("Su credito es: " + cardS.credit());
-        System.out.println("Su ovni es: " + ufosPark.getUfoOf(cardS.number()));
+        CreditCard squanchy = new CreditCard("Squanchy", "4444444444444444");
+        ufosPark.dispatch(squanchy);
+        System.out.println("Su credito es: " + squanchy.credit());
+        System.out.println("Su ovni es: " + ufosPark.getUfoOf(squanchy.number()));
 
-        // Morty quiere su ovni, pero no hay disponibles
+        // Morty quiere un ovni para huir de la fiesta
+        // pero ya no queda ninguno disponible
 
         System.out.println("\nAlgun ovni para Morty?\n" + 
                              "======================");
-        CreditCard cardM = new CreditCard("Morty", "0000000000000000");
-        ufosPark.dispatch(cardM);
-        System.out.println("Su credito es: " + cardM.credit());
-        System.out.println("No hay ovni Morty: " + ufosPark.getUfoOf(cardM.number()));
+        CreditCard morty = new CreditCard("Morty", "0000000000000000");
+        ufosPark.dispatch(morty);
+        System.out.println("Su credito no ha cambiado: " + morty.credit());
+        System.out.println("No hay ovni Morty: " + ufosPark.getUfoOf(morty.number()));
 
-        // metemos un ovni mas en la flota de ovnis
+        // Metemos un ovni más en la flota de ovnis
         // y mostramos la flota por consola
 
         System.out.println("\nFlota de ovnis\n" + 
@@ -120,89 +127,92 @@ public class RicksyBusiness {
 
 
         /**
-         * Construye el dispensador del pack de bienvenida.
-         * Recibe el numero de unidades y el coste de cada
-         * uno de ellos que es de 50 EZIs
+         * Construye el dispensador de packs de bienvenida.
+         * Indica el numero de unidades y el coste de cada
+         * uno de ellos, que es de 50 EZIs
          */
 
         CrystalExpender packExpender = new CrystalExpender(3, 50);
 
-        // muestra el total de packs y su precio unidad
-        System.out.println("\n" + "Packs" + "\n" + 
-                                  "====="        );
+        // Muestra el total de packs y su precio unidad
+        System.out.println("\nPacks\n" + 
+                             "=====");
         System.out.println(packExpender);
 
-        // Abradolph compre su pack de bienvenida
-        packExpender.dispatch(cardA);
+        // Abradolph compra su pack de bienvenida
+        packExpender.dispatch(abradolph);
 
-        System.out.println("\n" + "Abradolph compra su pack" + "\n" + 
-                                  "========================"        );
+        System.out.println("\nAbradolph compra su pack\n" + 
+                             "========================");
         System.out.println("Packs\n" + packExpender);
-        System.out.println("Credito de Abradolph: " + cardA.credit());
+        System.out.println("Credito de Abradolph: " + abradolph.credit());
 
         // El pobre GerHead no tiene crédito para comprar su pack
-        System.out.println("\n" + "GearHead sin credito para su pack" + "\n" + 
-                                  "================================="        );
-        packExpender.dispatch(cardG);
+        System.out.println("\nGearHead sin credito para su pack\n" + 
+                             "=================================");
+        packExpender.dispatch(gearHead);
         System.out.println("Packs\n" + packExpender);
-        System.out.println("Credito de GearHead: " + cardG.credit());
+        System.out.println("Credito de GearHead: " + gearHead.credit());
 
 
         /**
          * Vamos a automatizar ahora ambas tareas, de modo que
-         * cuando llega un invitado/a se le asige un ovni
-         * y un pack y se realice el cargo a la tarjeta.
+         * cuando llega un invitado/a se le asiga un ovni
+         * y un pack y se realiza el cargo a la tarjeta.
          * 
          * Para ello, crea el componente receptivo
-         * y registra (añade) los componentes UberOvnis
-         * y PacksDispatcher al receptivo
+         * y registra (añade) los componentes UfosPark
+         * y CrystalDispatcher al receptivo
          */
 
         Receptivo receptivo = new Receptivo();
         receptivo.registra(packExpender);
         receptivo.registra(ufosPark);
 
-        // implementa el metodo receptivo.dispatch()
-        // para que invoque a ufosPark.dispatch()
-        // y a packExpender.dispatch()
+        // Implementa el metodo receptivo.dispatch()
+        // para que invoque a UfosPark.dispatch()
+        // y a CrystalExpender.dispatch()
 
-        // Squanchy es recibido en la fiesta 
+        // Squanchy reserva ovni (ya tiene) y pack
 
         System.out.println("\nLLega Squanchy!\n" + 
                              "===============");
-        receptivo.dispatch(cardS);
-        mostrarReserva(cardS, packExpender, ufosPark);
+        receptivo.dispatch(squanchy);
+        mostrarReserva(squanchy, packExpender, ufosPark);
 
-        // Gearhead es recibido en la fiesta
+        // Gearhead reserva ovni y pack.
+        // No tiene crédito.
 
         System.out.println("\nLLega GearHead!\n" + 
                              "===============");
-        // A GearHead le vacían la tarjeta mientras da la chapa
-        // antes de pagar el ovni y el pack
-        cardG.pay(3000);
-        receptivo.dispatch(cardG);
-        mostrarReserva(cardG, packExpender, ufosPark);
+        gearHead.pay(3000); // no tiene crédito
+        receptivo.dispatch(gearHead);
+        mostrarReserva(gearHead, packExpender, ufosPark);
 
-        // Birdpearson es recibido en la fiesta 
+        // Birdpearson es recibido en la fiesta
 
         System.out.println("\nLLega Birdpearson!\n" + 
                              "==================");
-        CreditCard card = new CreditCard("Birpearson", "1111111111111111");
-        receptivo.dispatch(card);
-        mostrarReserva(card, packExpender, ufosPark);
+        CreditCard birdpearson = new CreditCard("Birdpearson", "1111111111111111");
+        receptivo.dispatch(birdpearson);
+        mostrarReserva(birdpearson, packExpender, ufosPark);
 
-        // Morty intenta pillar un ovni y un paclk pero no quedan
+        // Morty intenta reserver un ovni y un pack pero no quedan
 
         System.out.println("\nMorty quiere pack y ovni pero no quedan :(\n" + 
                              "==========================================");
-        card = new CreditCard("Morty", "0000000000000000");
-        receptivo.dispatch(card);
-        mostrarReserva(card, packExpender, ufosPark);
+        morty = new CreditCard("Morty", "0000000000000000");
+        receptivo.dispatch(morty);
+        mostrarReserva(morty, packExpender, ufosPark);
         
+
         /**
-         * Si te ha sobrado tiempo, añade otra tarea al
-         * recpetivo, de modo que cuando llega un invitado/a 
-         * se le asige un ovni se realice el cargo a la tarjeta.
+         * A por el 10!! 
+         * Wubba lubba dub dub!!
+         * 
+         * Añade otra tarea al receptivo, 
+         * de modo que cuando llega un invitado/a 
+         * 
          */
 
          // tu código aquí
