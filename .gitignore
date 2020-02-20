@@ -156,5 +156,6 @@ buildNumber.properties
 .vscode/
 
 ######################
-###### Resources #####
+######   Docs    #####
 ######################
+*.ucls
