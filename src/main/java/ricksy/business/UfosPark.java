@@ -13,7 +13,7 @@ public class UfosPark implements GuestDispatcher {
     
     public UfosPark() {};
 
-    public void add(String ufoID) {
+    void add(String ufoID) {
         flota.putIfAbsent(ufoID, null);
     }
 
@@ -36,7 +36,7 @@ public class UfosPark implements GuestDispatcher {
     }                    
 
 
-    public String getUfoOf(String cardNumber) {
+    String getUfoOf(String cardNumber) {
         String ufoID = null;
         if (this.flota.containsValue(cardNumber)) {
             for (Map.Entry<String, String> entry: this.flota.entrySet()) {
@@ -60,11 +60,11 @@ public class UfosPark implements GuestDispatcher {
      * Testing
      */
 
-    public boolean containsCard(String cardNumber) {
+    boolean containsCard(String cardNumber) {
         return this.flota.containsValue(cardNumber);
     }
 
-    public Collection<String> cardNumbers() {
+    Collection<String> cardNumbers() {
         return this.flota.values();
     }
 } 
