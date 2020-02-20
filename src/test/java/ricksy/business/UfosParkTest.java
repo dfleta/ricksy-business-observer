@@ -24,9 +24,14 @@ public class UfosParkTest {
     }
 
     @Test
-    public void addUFOtest() {
+    public void addUfoTest() {
         Arrays.sort(ovnis);
         assertEquals(List.of(ovnis).toString(), ufos.toString());
+        
+        List<String> cards = ufos.cardNumbers()
+                                .stream()
+                                .collect(Collectors.toList());
+        assertEquals(ovnis.length, cards.size(), 0);
     }
 
     @Test
@@ -40,7 +45,7 @@ public class UfosParkTest {
                                     .collect(Collectors.toList());
 
         assertEquals(1, cards.size(), 0);
-
+        assertEquals(2500, card.credit(), 0);
     }
 
     @Test
@@ -50,6 +55,7 @@ public class UfosParkTest {
         assertEquals(0, card.credit(), 0);
         ufos.dispatch(card);
         assertFalse(ufos.containsCard(card.number()));
+        assertEquals(0, card.credit(), 0);
     }
 
     @Test
@@ -63,6 +69,27 @@ public class UfosParkTest {
                                     .collect(Collectors.toList());
 
         assertEquals(1, cards.size(), 0);
+        assertEquals(2500, card.credit(), 0);
+    }
+
+    @Test
+    public void dispatchNoUfoAvaliableTest() {
+        CreditCard abradolph = new CreditCard("Abradolf Lincler", "4916119711304546");
+        ufos.dispatch(abradolph);
+        CreditCard squanchy = new CreditCard("Squanchy", "4444444444444444");
+        ufos.dispatch(squanchy);
+        CreditCard birdpearson = new CreditCard("Birdpearson", "1111111111111111");
+        ufos.dispatch(birdpearson);
+        CreditCard morty = new CreditCard("Morty", "0000000000000000");
+        ufos.dispatch(morty);
+
+        List<String> cards = ufos.cardNumbers()
+                                    .stream()
+                                    .filter(n -> n == morty.number())
+                                    .collect(Collectors.toList());
+
+        assertEquals(0, cards.size(), 0);
+        assertEquals(3000, morty.credit(), 0);
     }
 
     @Test
@@ -70,5 +97,6 @@ public class UfosParkTest {
         CreditCard card = new CreditCard("Abradolf Lincler", "4916119711304546");
         ufos.dispatch(card);
         assertTrue(ufos.toString().contains(ufos.getUfoOf(card.number())));
+        assertEquals(2500, card.credit(), 0);
     }
 }

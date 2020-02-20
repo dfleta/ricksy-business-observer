@@ -19,15 +19,22 @@ public class UfosPark implements GuestDispatcher {
 
     @Override
     public void dispatch(CreditCard card) {
-        if (!flota.containsValue(card.number()) && card.pay(fee)) {
+
+        Map.Entry<String, String> ufo = null;
+
+        if (!flota.containsValue(card.number())) {
             for (Map.Entry<String, String> entry : this.flota.entrySet()) {
                 if (entry.getValue() == null) {
-                    this.flota.put(entry.getKey(), card.number());
+                    ufo = entry;
                     break;
                 }
             }
         }
-    }
+        if (ufo != null  && card.pay(fee)) {
+            this.flota.put(ufo.getKey(), card.number());
+        }
+    }                    
+
 
     public String getUfoOf(String cardNumber) {
         String ufoID = null;
