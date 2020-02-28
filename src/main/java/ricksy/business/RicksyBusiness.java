@@ -72,7 +72,7 @@ public class RicksyBusiness {
         // Mostramos el credito de la tarjeta de Abradolph
         System.out.println("Credito de Abradolph: " + abradolph.credit());
 
-        // Abradolph quiere reservar otro ovni.
+        // La dualidad en Abradolph quiere reservar otro ovni.
         // El sistema detecta que ya tiene uno 
         // e ignora la petición.
 
@@ -241,6 +241,7 @@ public class RicksyBusiness {
 
         for (CreditCard card: cards) {
             System.out.println(card);
+            System.out.println();
         }
     }
 
