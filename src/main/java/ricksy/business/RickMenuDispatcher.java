@@ -3,14 +3,14 @@ package ricksy.business;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RickMenuDispatcher implements GuestDispatcher {
+class RickMenuDispatcher implements GuestDispatcher {
 
     private int stock = 100;
     private double menuCost = 10d;
 
     private final List<String> orders = new ArrayList<String>();   
 
-    public RickMenuDispatcher() {};
+    RickMenuDispatcher() {};
 
     @Override
     public void dispatch(CreditCard card) {
