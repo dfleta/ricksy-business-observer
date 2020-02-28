@@ -1,18 +1,18 @@
 package ricksy.business;
 
-public class CreditCard {
+class CreditCard {
 
     private final String owner;
     private final String number;
     private double credit = 3000d;
     private final String SYMBOL = "EZI";
 
-    public CreditCard(String owner, String number) {
+    CreditCard(String owner, String number) {
         this.owner = owner;
         this.number = number;
     }
 
-    public boolean pay(double charge) {
+    boolean pay(double charge) {
         if (charge <= this.credit) {
             this.credit -= charge;
             return true;
@@ -21,7 +21,7 @@ public class CreditCard {
         }
     }
 
-    public String number() {
+    String number() {
         return this.number;
     }
 
