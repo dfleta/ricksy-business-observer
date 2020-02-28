@@ -1,11 +1,11 @@
 package ricksy.business;
 
-public class CrystalExpender implements GuestDispatcher {
+class CrystalExpender implements GuestDispatcher {
 
     private int stock = 0;
     private double itemCost = 0d;
 
-    public CrystalExpender(int stock, double itemCost) {
+    CrystalExpender(int stock, double itemCost) {
         this.stock = stock;
         this.itemCost = itemCost;
     }
@@ -23,7 +23,7 @@ public class CrystalExpender implements GuestDispatcher {
                 "\ncost: " + this.itemCost;
     }
 
-    public int stock() {
+    int stock() {
         return this.stock;
     }
 }
