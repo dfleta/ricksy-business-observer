@@ -6,12 +6,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class UfosPark implements GuestDispatcher {
+class UfosPark implements GuestDispatcher {
 
     private double fee = 500d;
-    private Map<String, String> flota = new HashMap<String, String>();
+    private final Map<String, String> flota = new HashMap<String, String>();
     
-    public UfosPark() {};
+    UfosPark() {};
 
     void add(String ufoID) {
         flota.putIfAbsent(ufoID, null);
