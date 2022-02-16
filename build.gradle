@@ -15,3 +15,16 @@ dependencies {
 application {
     mainClassName = 'ricksy.business.RicksyBusiness'
 }
+
+
+jar {
+    manifest {
+        attributes( "Manifest-Version": "1.0",
+                    "Created-By": "Gradle",
+                    "Main-Class": "ricksy.business.RicksyBusiness",
+                    "Implementation-Title": "Gradle",
+                    "Implementation-Version": archiveVersion )
+    }
+}
+
+
