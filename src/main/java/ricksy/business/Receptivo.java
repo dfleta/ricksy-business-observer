@@ -7,7 +7,7 @@ import ricksy.business.payment.PaymentMethod;
 
 class Receptivo {
     
-    private Set<GuestDispatcher> observers = new LinkedHashSet<>();
+    private final Set<GuestDispatcher> observers = new LinkedHashSet<>();
 
     void registra(GuestDispatcher observer) {
         observers.add(observer);
