@@ -1,6 +1,6 @@
 package ricksy.business;
 
-class CreditCard {
+class CreditCard implements PaymentMethod {
 
     private final String owner;
     private final String number;
@@ -12,7 +12,8 @@ class CreditCard {
         this.number = number;
     }
 
-    boolean pay(double charge) {
+    @Override
+    public boolean pay(double charge) {
         if (charge <= this.credit) {
             this.credit -= charge;
             return true;
@@ -21,15 +22,18 @@ class CreditCard {
         }
     }
 
-    String number() {
+    @Override
+    public String number() {
         return this.number;
     }
 
-    String cardOwner() {
+    @Override
+    public String cardOwner() {
         return this.owner;
     }
 
-    double credit() {
+    @Override
+    public double credit() {
         return this.credit;
     }
 

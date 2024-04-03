@@ -18,7 +18,7 @@ class UfosPark implements GuestDispatcher {
     }
 
     @Override
-    public void dispatch(CreditCard card) {
+    public void dispatch(PaymentMethod card) {
 
         Map.Entry<String, String> ufo = null;
 

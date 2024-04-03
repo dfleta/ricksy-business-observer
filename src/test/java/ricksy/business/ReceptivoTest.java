@@ -27,7 +27,7 @@ public class ReceptivoTest {
     @Test
     public void dispatchTest() {
 
-        CreditCard card = new CreditCard("Abradolf Lincler", "4916119711304546");
+        PaymentMethod card = new CreditCard("Abradolf Lincler", "4916119711304546");
         receptivo.dispatch(card);
 
         assertEquals(2450, card.credit(), 0);
@@ -38,7 +38,7 @@ public class ReceptivoTest {
     @Test
     public void dispatchNoCreditTest() {
 
-        CreditCard card = new CreditCard("Abradolf Lincler", "4916119711304546");
+        PaymentMethod card = new CreditCard("Abradolf Lincler", "4916119711304546");
         card.pay(3000);
         receptivo.dispatch(card);
         assertEquals(0, card.credit(), 0);

@@ -36,7 +36,7 @@ public class RicksyBusiness {
          * el crédito inicial es de 3000 EZIS
          */
 
-        CreditCard abradolph = new CreditCard("Abradolph Lincler", "4916119711304546");
+        PaymentMethod abradolph = new CreditCard("Abradolph Lincler", "4916119711304546");
         
         System.out.println("\n" + "Tarjeta de Abradolph" + "\n" + 
                                   "===================="        );
@@ -89,7 +89,7 @@ public class RicksyBusiness {
 
         System.out.println("\nLLega GearHead!\n" + 
                              "===============");
-        CreditCard gearHead = new CreditCard("Gearhead", "8888888888888888");
+        PaymentMethod gearHead = new CreditCard("Gearhead", "8888888888888888");
 
         gearHead.pay(3000); // le vacían la cartera
 
@@ -102,7 +102,7 @@ public class RicksyBusiness {
 
         System.out.println("\nLLega Squanchy!\n" + 
                              "==============");
-        CreditCard squanchy = new CreditCard("Squanchy", "4444444444444444");
+        PaymentMethod squanchy = new CreditCard("Squanchy", "4444444444444444");
         ufosPark.dispatch(squanchy);
         System.out.println("Su credito es: " + squanchy.credit());
         System.out.println("Su ovni es: " + ufosPark.getUfoOf(squanchy.number()));
@@ -112,7 +112,7 @@ public class RicksyBusiness {
 
         System.out.println("\nAlgun ovni para Morty?\n" + 
                              "======================");
-        CreditCard morty = new CreditCard("Morty", "0000000000000000");
+        PaymentMethod morty = new CreditCard("Morty", "0000000000000000");
         ufosPark.dispatch(morty);
         System.out.println("Su credito no ha cambiado: " + morty.credit());
         System.out.println("No hay ovni Morty: " + ufosPark.getUfoOf(morty.number()));
@@ -193,7 +193,7 @@ public class RicksyBusiness {
 
         System.out.println("\nLLega Birdpearson!\n" + 
                              "==================");
-        CreditCard birdpearson = new CreditCard("Birdpearson", "1111111111111111");
+        PaymentMethod birdpearson = new CreditCard("Birdpearson", "1111111111111111");
         receptivo.dispatch(birdpearson);
         mostrarReserva(birdpearson, packExpender, ufosPark);
 
@@ -226,9 +226,9 @@ public class RicksyBusiness {
 
         receptivo.registra(MenuDispatcher);
 
-        CreditCard[] cards = {abradolph, squanchy, morty, gearHead, birdpearson};
+        PaymentMethod[] cards = {abradolph, squanchy, morty, gearHead, birdpearson};
 
-        for (CreditCard card: cards) {
+        for (PaymentMethod card: cards) {
             receptivo.dispatch(card);
         }
 
@@ -239,13 +239,13 @@ public class RicksyBusiness {
         System.out.println("\nCreditos de los invitados/as:\n" + 
                              "=============================");
 
-        for (CreditCard card: cards) {
+        for (PaymentMethod card: cards) {
             System.out.println(card);
             System.out.println();
         }
     }
 
-    private static void mostrarReserva(CreditCard card, CrystalExpender expender, UfosPark ufos) {
+    private static void mostrarReserva(PaymentMethod card, CrystalExpender expender, UfosPark ufos) {
         System.out.println(card);
         System.out.println("Packs: " + expender.stock());
         System.out.println("Ovni: " + ufos.getUfoOf(card.number()));

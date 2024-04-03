@@ -7,7 +7,7 @@ import org.junit.Before;
 
 public class CreditCardTest {
 
-    private CreditCard card = null;
+    private PaymentMethod card = null;
 
     @Before
     public void setupCard() {

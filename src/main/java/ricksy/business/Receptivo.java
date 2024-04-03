@@ -11,7 +11,7 @@ class Receptivo {
         observers.add(observer);
     }
 
-    void dispatch(CreditCard card) {
+    void dispatch(PaymentMethod card) {
         for (GuestDispatcher observer: observers) {
             observer.dispatch(card);
         }

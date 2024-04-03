@@ -23,14 +23,14 @@ public class CrystalExpenderTest {
 
     @Test
     public void dispatchTestOK() {
-        CreditCard card = new CreditCard("Abradolf Lincler", "4916119711304546");
+        PaymentMethod card = new CreditCard("Abradolf Lincler", "4916119711304546");
         expender.dispatch(card);
         assertEquals(99, expender.stock());
     }
 
     @Test
     public void dispatchTestNoStock() {
-        CreditCard card = new CreditCard("Abradolf Lincler", "4916119711304546");
+        PaymentMethod card = new CreditCard("Abradolf Lincler", "4916119711304546");
         expender = new CrystalExpender(0, 50.0);
         expender.dispatch(card);
         assertEquals(0, expender.stock());
@@ -39,7 +39,7 @@ public class CrystalExpenderTest {
 
     @Test
     public void dispatchTestNoCredit() {
-        CreditCard card = new CreditCard("Abradolf Lincler", "4916119711304546");
+        PaymentMethod card = new CreditCard("Abradolf Lincler", "4916119711304546");
         expender = new CrystalExpender(100, 4000);
         expender.dispatch(card);
         assertEquals(100, expender.stock());
