@@ -1,6 +1,6 @@
-package ricksy.business;
+package ricksy.business.payment;
 
-interface PaymentMethod {
+public interface PaymentMethod {
 
     boolean pay(double charge);
 

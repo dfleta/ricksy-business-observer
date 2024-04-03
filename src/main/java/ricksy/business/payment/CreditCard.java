@@ -1,13 +1,13 @@
-package ricksy.business;
+package ricksy.business.payment;
 
-class CreditCard implements PaymentMethod {
+public class CreditCard implements PaymentMethod {
 
     private final String owner;
     private final String number;
     private double credit = 3000d;
     private final String SYMBOL = "EZI";
 
-    CreditCard(String owner, String number) {
+    public CreditCard(String owner, String number) {
         this.owner = owner;
         this.number = number;
     }

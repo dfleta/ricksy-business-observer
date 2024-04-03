@@ -3,6 +3,8 @@ package ricksy.business;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
+import ricksy.business.payment.PaymentMethod;
+
 class Receptivo {
     
     private Set<GuestDispatcher> observers = new LinkedHashSet<>();

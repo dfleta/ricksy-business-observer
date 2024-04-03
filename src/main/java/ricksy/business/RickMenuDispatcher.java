@@ -3,6 +3,8 @@ package ricksy.business;
 import java.util.ArrayList;
 import java.util.List;
 
+import ricksy.business.payment.PaymentMethod;
+
 class RickMenuDispatcher implements GuestDispatcher {
 
     private int stock = 100;

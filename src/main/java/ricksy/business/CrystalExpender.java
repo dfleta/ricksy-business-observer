@@ -1,5 +1,7 @@
 package ricksy.business;
 
+import ricksy.business.payment.PaymentMethod;
+
 class CrystalExpender implements GuestDispatcher {
 
     private int stock = 0;

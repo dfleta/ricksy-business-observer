@@ -25,6 +25,9 @@
 
 package ricksy.business;
 
+import ricksy.business.payment.CreditCard;
+import ricksy.business.payment.PaymentMethod;
+
 public class RicksyBusiness {
     
     public static void main(String[] args) {

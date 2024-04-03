@@ -6,6 +6,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import ricksy.business.payment.PaymentMethod;
+
 class UfosPark implements GuestDispatcher {
 
     private double fee = 500d;
