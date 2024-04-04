@@ -1,19 +1,20 @@
-package ricksy.business;
+package ricksy.business.receptivo;
 
 import java.util.LinkedHashSet;
 import java.util.Set;
 
+import ricksy.business.GuestDispatcher;
 import ricksy.business.payment.PaymentMethod;
 
-class Receptivo {
+public class Receptivo {
     
     private final Set<GuestDispatcher> observers = new LinkedHashSet<>();
 
-    void registra(GuestDispatcher observer) {
+    public void registra(GuestDispatcher observer) {
         observers.add(observer);
     }
 
-    void dispatch(PaymentMethod card) {
+    public void dispatch(PaymentMethod card) {
         for (GuestDispatcher observer: observers) {
             observer.dispatch(card);
         }

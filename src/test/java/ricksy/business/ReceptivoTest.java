@@ -4,6 +4,7 @@ import org.junit.Test;
 
 import ricksy.business.payment.CreditCard;
 import ricksy.business.payment.PaymentMethod;
+import ricksy.business.receptivo.Receptivo;
 
 import static org.junit.Assert.*;
 
