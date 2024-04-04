@@ -7,11 +7,19 @@ import ricksy.business.GuestDispatcher;
 import ricksy.business.payment.PaymentMethod;
 
 public class Receptivo {
+
+    private static Receptivo instance = null;
     
     private final Set<GuestDispatcher> observers = new LinkedHashSet<>();
 
+    private Receptivo() {};
+
+    public static Receptivo getReceptivo() {
+        return instance = instance == null ? new Receptivo() : instance;
+    }
+
     public void registra(GuestDispatcher observer) {
-        observers.add(observer);
+        this.observers.add(observer);
     }
 
     public void dispatch(PaymentMethod card) {

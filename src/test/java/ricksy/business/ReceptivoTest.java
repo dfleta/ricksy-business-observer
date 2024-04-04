@@ -24,9 +24,17 @@ public class ReceptivoTest {
 
         packExpender = new CrystalExpender(100, 50);
 
-        receptivo = new Receptivo();
+        receptivo = Receptivo.getReceptivo();
         receptivo.registra(parkTest.ufos);
         receptivo.registra(packExpender);
+    }
+
+    @Test
+    public void SingletonReceptivo() {
+        receptivo = Receptivo.getReceptivo();
+        assertNotNull(receptivo);
+        Receptivo otherReceptivo = Receptivo.getReceptivo();
+        assertEquals(receptivo, otherReceptivo);
     }
 
     @Test

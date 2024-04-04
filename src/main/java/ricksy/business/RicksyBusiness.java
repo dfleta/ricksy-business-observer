@@ -169,7 +169,7 @@ public class RicksyBusiness {
          * y CrystalDispatcher al receptivo
          */
 
-        Receptivo receptivo = new Receptivo();
+        Receptivo receptivo = Receptivo.getReceptivo();
         receptivo.registra(packExpender);
         receptivo.registra(ufosPark);
 
