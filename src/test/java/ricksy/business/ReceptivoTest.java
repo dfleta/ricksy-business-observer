@@ -33,8 +33,9 @@ public class ReceptivoTest {
     public void SingletonReceptivo() {
         receptivo = Receptivo.getReceptivo();
         assertNotNull(receptivo);
-        Receptivo otherReceptivo = Receptivo.getReceptivo();
-        assertEquals(receptivo, otherReceptivo);
+        Receptivo otroReceptivo = Receptivo.getReceptivo();
+        assertEquals(receptivo, otroReceptivo);
+        assertSame(receptivo, otroReceptivo);
     }
 
     @Test
