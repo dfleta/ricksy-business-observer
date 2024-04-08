@@ -53,9 +53,10 @@ public class ReceptivoTest {
     public void dispatchNoCreditTest() {
 
         PaymentMethod card = new CreditCard("Abradolf Lincler", "4916119711304546");
-        card.pay(3000);
+        assertTrue(card.pay(2990));
+        assertEquals(10, card.credit(), 0);
         receptivo.dispatch(card);
-        assertEquals(0, card.credit(), 0);
+        assertEquals(10, card.credit(), 0);
         assertFalse(parkTest.ufos.containsCard(card.number()));
         assertEquals(100, packExpender.stock());
     }

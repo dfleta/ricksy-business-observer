@@ -95,7 +95,7 @@ public class RicksyBusiness {
                              "===============");
         PaymentMethod gearHead = new CreditCard("Gearhead", "8888888888888888");
 
-        gearHead.pay(3000); // le vacían la cartera
+        gearHead.pay(2999); // le vacían la cartera
 
         ufosPark.dispatch(gearHead);
         System.out.println("Su credito es cero: " + gearHead.credit());

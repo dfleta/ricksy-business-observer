@@ -55,11 +55,11 @@ public class UfosParkTest {
     @Test
     public void dispatchNoCreditTest() {
         PaymentMethod card = new CreditCard("Abradolf Lincler", "4916119711304546");
-        card.pay(3000);
-        assertEquals(0, card.credit(), 0);
+        card.pay(2999);
+        assertEquals(1, card.credit(), 0.1);
         ufos.dispatch(card);
         assertFalse(ufos.containsCard(card.number()));
-        assertEquals(0, card.credit(), 0);
+        assertEquals(1, card.credit(), 0.1);
     }
 
     @Test

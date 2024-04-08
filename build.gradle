@@ -5,11 +5,12 @@ plugins {
 }
 
 repositories {
-    mavenLocal()
+    mavenCentral()
 }
 
 dependencies {
     testImplementation 'junit:junit:4.12'
+    implementation group: 'org.apache.commons', name: 'commons-lang3', version: '3.14.0'
 }
 
 application {

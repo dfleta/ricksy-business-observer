@@ -1,5 +1,7 @@
 package ricksy.business.payment;
 
+import org.apache.commons.lang3.BooleanUtils;
+
 public class CreditCard implements PaymentMethod {
 
     private final String owner;
@@ -14,12 +16,9 @@ public class CreditCard implements PaymentMethod {
 
     @Override
     public boolean pay(double charge) {
-        if (charge <= this.credit) {
-            this.credit -= charge;
-            return true;
-        } else {
-            return false;
-        }
+        return charge <= this.credit - 1 ? 
+                            BooleanUtils.toBoolean((int) (this.credit -= charge)) 
+                            : false;
     }
 
     @Override
