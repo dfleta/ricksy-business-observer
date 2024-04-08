@@ -1,4 +1,4 @@
-package ricksy.business;
+package ricksy.business.receptivo;
 
 import ricksy.business.payment.PaymentMethod;
 

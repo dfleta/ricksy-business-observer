@@ -3,7 +3,6 @@ package ricksy.business.receptivo;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
-import ricksy.business.GuestDispatcher;
 import ricksy.business.payment.PaymentMethod;
 
 public class Receptivo {

@@ -1,4 +1,4 @@
-package ricksy.business;
+package ricksy.business.dispatchers;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -7,15 +7,16 @@ import java.util.List;
 import java.util.Map;
 
 import ricksy.business.payment.PaymentMethod;
+import ricksy.business.receptivo.GuestDispatcher;
 
-class UfosPark implements GuestDispatcher {
+public class UfosPark implements GuestDispatcher {
 
     private double fee = 500d;
     private final Map<String, String> flota = new HashMap<String, String>();
     
-    UfosPark() {};
+    public UfosPark() {};
 
-    void add(String ufoID) {
+    public void add(String ufoID) {
         flota.putIfAbsent(ufoID, null);
     }
 
@@ -38,7 +39,7 @@ class UfosPark implements GuestDispatcher {
     }                    
 
 
-    String getUfoOf(String cardNumber) {
+    public String getUfoOf(String cardNumber) {
         String ufoID = null;
         if (this.flota.containsValue(cardNumber)) {
             for (Map.Entry<String, String> entry: this.flota.entrySet()) {
@@ -62,7 +63,7 @@ class UfosPark implements GuestDispatcher {
      * Testing
      */
 
-    boolean containsCard(String cardNumber) {
+    public boolean containsCard(String cardNumber) {
         return this.flota.containsValue(cardNumber);
     }
 

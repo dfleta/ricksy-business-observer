@@ -1,4 +1,4 @@
-package ricksy.business;
+package ricksy.business.dispatchers;
 
 import org.junit.Test;
 

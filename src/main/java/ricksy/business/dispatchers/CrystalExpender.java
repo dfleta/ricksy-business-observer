@@ -1,13 +1,14 @@
-package ricksy.business;
+package ricksy.business.dispatchers;
 
 import ricksy.business.payment.PaymentMethod;
+import ricksy.business.receptivo.GuestDispatcher;
 
-class CrystalExpender implements GuestDispatcher {
+public class CrystalExpender implements GuestDispatcher {
 
     private int stock = 0;
     private double itemCost = 0d;
 
-    CrystalExpender(int stock, double itemCost) {
+    public CrystalExpender(int stock, double itemCost) {
         this.stock = stock;
         this.itemCost = itemCost;
     }
@@ -25,7 +26,7 @@ class CrystalExpender implements GuestDispatcher {
                 "\ncost: " + this.itemCost;
     }
 
-    int stock() {
+    public int stock() {
         return this.stock;
     }
 }
