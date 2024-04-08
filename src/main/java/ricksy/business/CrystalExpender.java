@@ -1,5 +1,7 @@
 package ricksy.business;
 
+import ricksy.business.payment.PaymentMethod;
+
 class CrystalExpender implements GuestDispatcher {
 
     private int stock = 0;
@@ -11,7 +13,7 @@ class CrystalExpender implements GuestDispatcher {
     }
 
     @Override
-    public void dispatch(CreditCard card) {
+    public void dispatch(PaymentMethod card) {
         if (this.stock > 0 && card.pay(itemCost)) {
             this.stock -= 1;
         }

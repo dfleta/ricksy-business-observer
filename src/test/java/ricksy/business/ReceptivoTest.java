@@ -1,6 +1,11 @@
 package ricksy.business;
 
 import org.junit.Test;
+
+import ricksy.business.payment.CreditCard;
+import ricksy.business.payment.PaymentMethod;
+import ricksy.business.receptivo.Receptivo;
+
 import static org.junit.Assert.*;
 
 import org.junit.Before;
@@ -19,15 +24,24 @@ public class ReceptivoTest {
 
         packExpender = new CrystalExpender(100, 50);
 
-        receptivo = new Receptivo();
+        receptivo = Receptivo.getReceptivo();
         receptivo.registra(parkTest.ufos);
         receptivo.registra(packExpender);
     }
 
     @Test
+    public void SingletonReceptivo() {
+        receptivo = Receptivo.getReceptivo();
+        assertNotNull(receptivo);
+        Receptivo otroReceptivo = Receptivo.getReceptivo();
+        assertEquals(receptivo, otroReceptivo);
+        assertSame(receptivo, otroReceptivo);
+    }
+
+    @Test
     public void dispatchTest() {
 
-        CreditCard card = new CreditCard("Abradolf Lincler", "4916119711304546");
+        PaymentMethod card = new CreditCard("Abradolf Lincler", "4916119711304546");
         receptivo.dispatch(card);
 
         assertEquals(2450, card.credit(), 0);
@@ -38,10 +52,11 @@ public class ReceptivoTest {
     @Test
     public void dispatchNoCreditTest() {
 
-        CreditCard card = new CreditCard("Abradolf Lincler", "4916119711304546");
-        card.pay(3000);
+        PaymentMethod card = new CreditCard("Abradolf Lincler", "4916119711304546");
+        assertTrue(card.pay(2990));
+        assertEquals(10, card.credit(), 0);
         receptivo.dispatch(card);
-        assertEquals(0, card.credit(), 0);
+        assertEquals(10, card.credit(), 0);
         assertFalse(parkTest.ufos.containsCard(card.number()));
         assertEquals(100, packExpender.stock());
     }

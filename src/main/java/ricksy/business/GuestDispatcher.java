@@ -1,7 +1,9 @@
 package ricksy.business;
 
-interface GuestDispatcher {
+import ricksy.business.payment.PaymentMethod;
 
-    void dispatch(CreditCard card);
+public interface GuestDispatcher {
+
+    void dispatch(PaymentMethod card);
 
 }
