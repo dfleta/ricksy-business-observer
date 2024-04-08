@@ -1,18 +1,19 @@
-package ricksy.business;
+package ricksy.business.dispatchers;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import ricksy.business.payment.PaymentMethod;
+import ricksy.business.receptivo.GuestDispatcher;
 
-class RickMenuDispatcher implements GuestDispatcher {
+public class RickMenuDispatcher implements GuestDispatcher {
 
     private int stock = 100;
     private double menuCost = 10d;
 
     private final List<String> orders = new ArrayList<String>();   
 
-    RickMenuDispatcher() {};
+    public RickMenuDispatcher() {};
 
     @Override
     public void dispatch(PaymentMethod card) {

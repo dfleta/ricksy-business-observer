@@ -1,7 +1,9 @@
-package ricksy.business;
+package ricksy.business.receptivo;
 
 import org.junit.Test;
 
+import ricksy.business.dispatchers.CrystalExpender;
+import ricksy.business.dispatchers.UfosParkTest;
 import ricksy.business.payment.CreditCard;
 import ricksy.business.payment.PaymentMethod;
 import ricksy.business.receptivo.Receptivo;

@@ -1,4 +1,4 @@
-package ricksy.business;
+package ricksy.business.dispatchers;
 
 import org.junit.Test;
 
@@ -15,7 +15,7 @@ import org.junit.Before;
 
 public class UfosParkTest {
 
-    UfosPark ufos = null;
+    public UfosPark ufos = null;
     String[] ovnis = { "unx", "dox", "trex" };
 
     @Before

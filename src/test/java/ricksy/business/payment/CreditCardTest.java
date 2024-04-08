@@ -1,9 +1,6 @@
-package ricksy.business;
+package ricksy.business.payment;
 
 import org.junit.Test;
-
-import ricksy.business.payment.CreditCard;
-import ricksy.business.payment.PaymentMethod;
 
 import static org.junit.Assert.*;
 
