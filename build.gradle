@@ -4,6 +4,12 @@ plugins {
     id 'application'
 }
 
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
+
 repositories {
     mavenCentral()
 }
@@ -14,7 +20,7 @@ dependencies {
 }
 
 application {
-    mainClassName = 'ricksy.business.RicksyBusiness'
+    mainClass = 'ricksy.business.RicksyBusiness'
 }
 
 
