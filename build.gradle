@@ -19,6 +19,10 @@ application {
 
 
 jar {
+    // desempaqueta todos los JARs de dependencias e incluye sus clases dentro del JAR generado
+    // Asi se incluye la clase org.apache.commons.lang3.BooleanUtils de CreditCard
+    from configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
     manifest {
         attributes( "Manifest-Version": "1.0",
                     "Created-By": "Gradle",
