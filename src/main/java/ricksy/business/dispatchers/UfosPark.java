@@ -5,6 +5,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import ricksy.business.payment.PaymentMethod;
 import ricksy.business.receptivo.GuestDispatcher;
@@ -40,16 +41,13 @@ public class UfosPark implements GuestDispatcher {
 
 
     public String getUfoOf(String cardNumber) {
-        String ufoID = null;
-        if (this.flota.containsValue(cardNumber)) {
-            for (Map.Entry<String, String> entry: this.flota.entrySet()) {
-                if (entry.getValue() == cardNumber) {
-                    ufoID = entry.getKey();
-                    break;
-                }
-            }
-        }
-        return ufoID;
+
+        Optional<Map.Entry<String, String>> ufoEntry = this.flota.entrySet()
+                                                            .stream()
+                                                            .filter(entry -> entry.getValue() != null 
+                                                                    && entry.getValue().equals(cardNumber))
+                                                            .findFirst();
+        return ufoEntry.isPresent() ? ufoEntry.get().getKey() : null;
     }
 
     @Override
