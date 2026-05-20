@@ -5,47 +5,41 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
-
 import ricksy.business.payment.PaymentMethod;
 import ricksy.business.receptivo.GuestDispatcher;
 
 public class UfosPark implements GuestDispatcher {
 
     private double fee = 500d;
-    private final Map<String, String> flota = new HashMap<String, String>();
+    private final Map<String, AbstractCustomer> flota = new HashMap<String, AbstractCustomer>();
     
-    public UfosPark() {};
+    public UfosPark() {}
 
     public void add(String ufoID) {
-        flota.putIfAbsent(ufoID, null);
+        flota.putIfAbsent(ufoID, new NullCustomer());
     }
 
     @Override
     public void dispatch(PaymentMethod card) {
+        boolean alreadyParked = flota.values().stream()
+                .anyMatch(customer -> !customer.isNull() && customer.getCustomerID().equals(card.number()));
+        if (alreadyParked) return;
 
-        Optional<Map.Entry<String, String>> ufoEntry = Optional.empty();
-        
-        if (!flota.containsValue(card.number())) {
-            ufoEntry = this.flota.entrySet()
-                    .stream()
-                    .filter(entry -> entry.getValue() == null)
-                    .findFirst();
-        }
-        if (ufoEntry.isPresent() && card.pay(fee)) {
-            this.flota.put(ufoEntry.get().getKey(), card.number());
-        }
+        this.flota.entrySet().stream()
+                .filter(entry -> entry.getValue().isNull())
+                .findFirst()
+                .filter(entry -> card.pay(fee)) // devuelve Optional u OptionalEmpty
+                .ifPresent(entry -> this.flota.put(entry.getKey(), new RealCustomer(card.number())));
     }                    
 
 
     public String getUfoOf(String cardNumber) {
-
-        Optional<Map.Entry<String, String>> ufoEntry = this.flota.entrySet()
-                                                            .stream()
-                                                            .filter(entry -> entry.getValue() != null 
-                                                                    && entry.getValue().equals(cardNumber))
-                                                            .findFirst();
-        return ufoEntry.isPresent() ? ufoEntry.get().getKey() : null;
+        return this.flota.entrySet().stream()
+                .filter(entry -> !entry.getValue().isNull()
+                        && entry.getValue().getCustomerID().equals(cardNumber))
+                .findFirst()
+                .map(Map.Entry::getKey)
+                .orElse(null);
     }
 
     @Override
@@ -60,10 +54,17 @@ public class UfosPark implements GuestDispatcher {
      */
 
     public boolean containsCard(String cardNumber) {
-        return this.flota.containsValue(cardNumber);
+        return this.flota.values()
+                            .stream()
+                            .anyMatch(customer -> !customer.isNull() && customer.getCustomerID().equals(cardNumber));
     }
 
     Collection<String> cardNumbers() {
-        return this.flota.values();
+        // pattern in instance of => requiere record
+        return this.flota.values()
+                .stream()
+                .filter(customer -> !customer.isNull())
+                .map(AbstractCustomer::getCustomerID)
+                .toList(); // requiere Java 16+
     }
 } 

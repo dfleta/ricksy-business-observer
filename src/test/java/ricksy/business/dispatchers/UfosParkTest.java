@@ -35,7 +35,7 @@ public class UfosParkTest {
         List<String> cards = ufos.cardNumbers()
                                 .stream()
                                 .collect(Collectors.toList());
-        assertEquals(ovnis.length, cards.size(), 0);
+        assertEquals(0, cards.size());
     }
 
     @Test
@@ -48,7 +48,7 @@ public class UfosParkTest {
                                     .filter(n -> n == card.number())
                                     .collect(Collectors.toList());
 
-        assertEquals(1, cards.size(), 0);
+        assertEquals(1, cards.size());
         assertEquals(2500, card.credit(), 0);
     }
 
