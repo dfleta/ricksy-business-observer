@@ -1,4 +1,4 @@
-package ricksy.business.dispatchers;
+package ricksy.business.dispatchers.park;
 
 import java.util.Arrays;
 import java.util.Collection;

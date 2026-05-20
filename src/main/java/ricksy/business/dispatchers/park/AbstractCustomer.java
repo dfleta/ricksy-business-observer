@@ -1,4 +1,4 @@
-package ricksy.business.dispatchers;
+package ricksy.business.dispatchers.park;
 
 abstract class AbstractCustomer {
     
