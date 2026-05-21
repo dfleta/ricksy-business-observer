@@ -103,4 +103,26 @@ public class UfosParkTest {
         assertTrue(ufos.toString().contains(ufos.getUfoOf(card.number())));
         assertEquals(2500, card.credit(), 0);
     }
+
+    // --- containsCard tests
+
+    @Test
+    public void containsCardTrueWhenParkedRealCustomer() {
+        PaymentMethod card = new CreditCard("Rick Sanchez", "4916119711304546");
+        ufos.dispatch(card);
+        assertTrue(ufos.containsCard(card.number()));
+    }
+
+    @Test
+    public void containsCardFalseWhenNoDispatch() {
+        // Todos los ovnis tienen NullCustomer
+        assertFalse("No hay ovnis alquilados", ufos.containsCard("4916119711304546"));
+    }
+
+    @Test
+    public void containsCardFalseForDifferentCard() {
+        PaymentMethod card = new CreditCard("Rick Sanchez", "4916119711304546");
+        ufos.dispatch(card);
+        assertFalse("La tarjeta no corresponde a ningún usuario con ovni alquilado", ufos.containsCard("9999999999999999"));
+    }
 }

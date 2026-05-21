@@ -21,15 +21,19 @@ public class UfosPark implements GuestDispatcher {
 
     @Override
     public void dispatch(PaymentMethod card) {
+
         boolean alreadyParked = flota.values().stream()
-                .anyMatch(customer -> !customer.isNull() && customer.getCustomerID().equals(card.number()));
+                .anyMatch(customer -> !customer.isNull() 
+                            && customer.getCustomerID().equals(card.number()));
+        
         if (alreadyParked) return;
 
         this.flota.entrySet().stream()
                 .filter(entry -> entry.getValue().isNull())
                 .findFirst()
                 .filter(entry -> card.pay(fee)) // devuelve Optional u OptionalEmpty
-                .ifPresent(entry -> this.flota.put(entry.getKey(), new RealCustomer(card.number())));
+                .ifPresent(entry -> this.flota.put(entry.getKey(), 
+                                                    new RealCustomer(card.number())));
     }                    
 
 
@@ -56,7 +60,8 @@ public class UfosPark implements GuestDispatcher {
     public boolean containsCard(String cardNumber) {
         return this.flota.values()
                             .stream()
-                            .anyMatch(customer -> !customer.isNull() && customer.getCustomerID().equals(cardNumber));
+                            .anyMatch(customer -> customer instanceof RealCustomer rc 
+                                        && rc.getCustomerID().equals(cardNumber));
     }
 
     Collection<String> cardNumbers() {
